@@ -25,7 +25,7 @@ TfListenerTest::TfListenerTest(const rclcpp::NodeOptions & options)
     this->get_node_base_interface(),
     this->get_node_timers_interface());
   tf_buffer_->setCreateTimerInterface(timer_interface);
-  tf_listener_ = std::make_shared<tf2_ros::TransformListener>(*tf_buffer_);
+  tf_listener_ = std::make_shared<tf2_ros::TransformListener>(*tf_buffer_, this, false);
 
   timer_ = this->create_wall_timer(
     std::chrono::microseconds(1000), std::bind(&TfListenerTest::timerCallback, this));
